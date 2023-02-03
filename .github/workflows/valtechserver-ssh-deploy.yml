@@ -19,6 +19,6 @@ jobs:
           docker login ghcr.io --username ${{ secrets.REGISTRY_USER }} --password ${{ secrets.TOKEN }}
           docker pull ghcr.io/valdtechsso/dnetqwikcmp:main
           docker compose -f dnetqwikcmp-docker-compose.yaml stop
-          docker rm $(docker ps --filter status=exited -q)
-          docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+          if [ "$(docker ps --filter status=exited -q)" ]; then docker rm $(docker ps --filter status=exited -q) fi
+          if [ "$(docker images --filter "dangling=true" -q --no-trunc)" ]; then docker rm $(docker images --filter "dangling=true" -q --no-trunc) fi
           docker compose -f dnetqwikcmp-docker-compose.yaml up -d
