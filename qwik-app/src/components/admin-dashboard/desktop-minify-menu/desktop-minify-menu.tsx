@@ -13,7 +13,9 @@ export const DesktopMinifyMenu = component$(() => {
     <>
       <div class="desktop-minify-menu" onClick$={
         () => {
-          state.isMinified = !state.isMinified;
+          if (state.showMinifier) {
+            state.isMinified = !state.isMinified;
+          }
         }
       }>
         <div class="minifyme">

@@ -5,8 +5,16 @@
 
 
 .hidden-minifier {
+    .desktop-minify-menu {
+       height: 0px;
+      }
+
     .minifyme {
-        height: 0px;
+        cursor: default;
+
+        span {
+            display: none;
+        }
     }
 }
 
