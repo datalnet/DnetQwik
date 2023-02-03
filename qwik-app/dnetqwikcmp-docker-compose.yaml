@@ -1,6 +1,6 @@
 version: '3'
 services:
-  blazorclient:
+  qwikclient:
     image: ghcr.io/valdtechsso/dnetqwikcmp:main
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
