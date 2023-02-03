@@ -46,5 +46,5 @@ app.use(notFound);
 // Start the express server
 app.listen(PORT, () => {
   /* eslint-disable */
-  console.log(`Server starter: http://localhost:${PORT}/`);
+  console.log(`Server starter: http://192.168.0.14:${PORT}/`);
 });
