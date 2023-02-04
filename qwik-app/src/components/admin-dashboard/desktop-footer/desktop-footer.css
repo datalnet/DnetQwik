@@ -12,6 +12,7 @@
 }
 
 .hidden-footer {
+
   .footer {
     border-top: none;
   }
@@ -22,6 +23,7 @@
 }
 
 .hidden-footer-and-header {
+
   .footer {
     border-top: none;
   }
