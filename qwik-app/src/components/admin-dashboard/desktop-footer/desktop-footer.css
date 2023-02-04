@@ -12,12 +12,20 @@
 }
 
 .hidden-footer {
+  .footer {
+    border-top: none;
+  }
+
   .footer-content {
     display: none;
   }
 }
 
 .hidden-footer-and-header {
+  .footer {
+    border-top: none;
+  }
+
   .footer-content {
     display: none;
   }

@@ -12,12 +12,20 @@
 }
 
 .hidden-header {
+  .header {
+    border-bottom: none;
+  }
+
   .header-content {
     display: none;
   }
 }
 
 .hidden-footer-and-header {
+  .header {
+    border-bottom: none;
+  }
+
   .header-content {
     display: none;
   }
