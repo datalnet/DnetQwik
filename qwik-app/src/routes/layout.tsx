@@ -23,7 +23,8 @@ export default component$(() => {
     isHeaderFixed: false,
     isLeftColumnFixed: false,
     showMinifier: true,
-    minifierChevronColor: "black"
+    minifierChevronColor: "black",
+    menuLinkTopHelperValue: 6
   });
 
   return (

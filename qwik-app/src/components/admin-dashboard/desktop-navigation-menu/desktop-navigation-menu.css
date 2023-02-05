@@ -26,7 +26,7 @@
     width: 100%;
     height: calc(100% - 0px);
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -34,6 +34,8 @@
   }
   
   li {
+    /* display: flex;
+    flex-direction: row; */
     position: static;
     height: auto;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -55,6 +57,12 @@
   
     .dnet-tree-cmp-link {
         height: var(--dnet-dash-navbar-height);
+    }
+
+    .dnet-tree-cmp-link-indicator {
+        height: var(--dnet-dash-navbar-height);
+        width: var(--dnet-dash-indicator-width);
+        background-color: transparent;
     }
   }
   
@@ -233,7 +241,7 @@
                 justify-content: flex-start;
                 width: 100%;
                 height: var(--dnet-dash-navbar-height);
-                color: var(--dnet-dash-navigation-color);
+                color: var(--dnet-dash-positioning-helper-color);
                 font-weight: 300;
                 text-decoration: none;
                 font-size: var(--dnet-dash-menu-text-size);
@@ -294,12 +302,13 @@
                 height: 2.25rem;
                 line-height: 2.25rem;
                 background-color: var(--dnet-dash-primary-dark);
-                color: var(--dnet-dash-navigation-color);
+                color: var(--dnet-dash-menu-item-parent-color);
                 z-index: 3;
                 border: none;
-                padding-left: 12px;
+                padding-left: 24px;
                 margin: 0;
-                display: block;
+                display: flex;
+                align-items: flex-start;
             }
         }
     }

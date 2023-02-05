@@ -9,4 +9,5 @@ export interface IThemeConfigData {
     isLeftColumnFixed: boolean;
     showMinifier: boolean;
     minifierChevronColor?: string;
+    menuLinkTopHelperValue: number;
 }

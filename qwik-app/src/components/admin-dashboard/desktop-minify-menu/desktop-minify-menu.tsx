@@ -2,12 +2,15 @@ import { component$, useStyles$, useContext } from '@builder.io/qwik';
 import styles from './desktop-minify-menu.css?inline';
 import { ThemeConfigContext } from '../desktop-layout/desktop-layout';
 import type { IThemeConfigData } from '../theme-config-data';
-
+import { MenuTreeContext } from '../desktop-left-column/desktop-left-column';
+import type { IMenuTreeContext } from '../desktop-left-column/desktop-left-column';
 
 export const DesktopMinifyMenu = component$(() => {
   useStyles$(styles);
 
   const state = useContext<IThemeConfigData>(ThemeConfigContext);
+
+  const menuTreeContext = useContext<IMenuTreeContext>(MenuTreeContext);
 
   return (
     <>
@@ -15,6 +18,7 @@ export const DesktopMinifyMenu = component$(() => {
         () => {
           if (state.showMinifier) {
             state.isMinified = !state.isMinified;
+            menuTreeContext.isOpen.value = false;
           }
         }
       }>

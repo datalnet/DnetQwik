@@ -1,17 +1,13 @@
-import { component$, useSignal, Signal, createContext, useContextProvider, $ } from '@builder.io/qwik';
+import { component$, useSignal, $, useContext } from '@builder.io/qwik';
 import { MenuTreeLink } from '../menu/menu-tree-link';
 import { MenuTreeLinkHelper } from '../menu/menu-tree-link-helper';
 import type { INavigationMenu } from '../menu/NavigationMenu';
-
-export interface IMenuTreeContext {
-  isOpen: Signal<boolean>;
-}
-
-export const MenuTreeContext = createContext<IMenuTreeContext>('tabList');
+import { MenuTreeContext } from '../desktop-left-column/desktop-left-column';
+import type { IMenuTreeContext } from '../desktop-left-column/desktop-left-column';
+import { ThemeConfigContext } from '../desktop-layout/desktop-layout';
+import type { IThemeConfigData } from '../theme-config-data';
 
 export const MenuTree = component$((props: { menu: INavigationMenu }) => {
-
-  const isOpen = useSignal<boolean>(false);
 
   const _top = useSignal<string | number | undefined>(0);
 
@@ -19,11 +15,9 @@ export const MenuTree = component$((props: { menu: INavigationMenu }) => {
 
   const elementRef = useSignal<HTMLElement>();
 
-  const menuTreeService: IMenuTreeContext = {
-    isOpen: isOpen,
-  };
-
-  useContextProvider(MenuTreeContext, menuTreeService);
+  const menuTreeContext = useContext<IMenuTreeContext>(MenuTreeContext);
+  
+  const themeConfigData = useContext<IThemeConfigData>(ThemeConfigContext);
 
   const onMouseOver = $(() => {
     if (props.menu.IsNode) {
@@ -31,7 +25,7 @@ export const MenuTree = component$((props: { menu: INavigationMenu }) => {
 
         const clientRectValues = elementRef.value.getBoundingClientRect();
 
-        _top.value = `${clientRectValues.top}px`;
+        _top.value = `${clientRectValues.top + themeConfigData.menuLinkTopHelperValue}px`;
         _left.value = `${clientRectValues.left + clientRectValues.width}px`;
       }
     }
@@ -47,8 +41,8 @@ export const MenuTree = component$((props: { menu: INavigationMenu }) => {
     <>
       <li onMouseOver$={onMouseOver} ref={elementRef}>
         <MenuTreeLink menu={props.menu} />
-        <div class={`positioning-helper ${menuTreeService.isOpen.value ? "open" : ""} `} style={{ top: _top.value, left: _left.value }}>
-          {!isOpen ? <MenuTreeLinkHelper menu={props.menu} /> : null}
+        <div class={`positioning-helper ${menuTreeContext.isOpen.value ? "open" : ""} `} style={{ top: _top.value, left: _left.value }}>
+          {!menuTreeContext.isOpen.value ? <MenuTreeLinkHelper menu={props.menu} /> : null}
           {props.menu.Children.length > 0 ? (
             <ul class="width-child">
               {props.menu.Children.map((item, index) => (
