@@ -19,6 +19,7 @@ export const DesktopMinifyMenu = component$(() => {
           if (state.showMinifier) {
             state.isMinified = !state.isMinified;
             menuTreeContext.isOpen.value = false;
+            localStorage.setItem('dnetQwikDashMinified', `${state.isMinified}`);
           }
         }
       }>

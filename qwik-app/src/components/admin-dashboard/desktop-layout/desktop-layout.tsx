@@ -1,4 +1,4 @@
-import { component$, useStyles$, Slot, createContext, useContextProvider } from '@builder.io/qwik';
+import { component$, useStyles$, Slot, createContext, useContextProvider, useTask$, useClientEffect$ } from '@builder.io/qwik';
 import styles from './desktop-layout.css?inline';
 import type { IThemeConfigData } from '../theme-config-data';
 
@@ -6,6 +6,16 @@ export const ThemeConfigContext = createContext<IThemeConfigData>('theme-config-
 
 export const DesktopLayout = component$(((props: { themeConfig: IThemeConfigData }) => {
   useStyles$(styles);
+
+  // useTask$(({ track }) => {
+  //   track(() => props.themeConfig.isMinified);
+  //   console.log(props.themeConfig.isMinified);
+  //   // props.themeConfig.isMinified = Boolean(localStorage.getItem('dnetQwikDashMinified'));
+  // });
+
+  useClientEffect$(() => {
+    props.themeConfig.isMinified = Boolean(localStorage.getItem('dnetQwikDashMinified'))
+  });
 
   useContextProvider(ThemeConfigContext, props.themeConfig);
 

@@ -13,8 +13,8 @@ export const MenuTreeLink = component$((props: { menu: INavigationMenu }) => {
 
   return (
     <>
-      {/* <div class="dnet-tree-cmp-link-indicator"></div> */}
       <div class={props.menu.HasImage ? "dnet-tree-cmp-link" : "dnet-tree-cmp-link no-image"}>
+        {/* <div class="dnet-tree-cmp-link-indicator"></div> */}
         {props.menu.Children.length > 0 ? (
           <a onClick$={
             () => {
@@ -31,9 +31,18 @@ export const MenuTreeLink = component$((props: { menu: INavigationMenu }) => {
                 ) : <span class="dnet-menu-text">{props.menu.MinifiedText}</span>}
               </div>
             ) : (
-              !themeConfigData.isMinified ? (
-                <span class="dnet-menu-text">{props.menu.Text}</span>
-              ) : <span class="dnet-menu-text">{props.menu.MinifiedText}</span>
+              !themeConfigData.isMinified ?
+                (
+                  <>
+                    <div class="dnet-tree-cmp-link-indicator"></div>
+                    <span class="dnet-menu-text">{props.menu.Text}</span>
+                  </>
+                ) : (
+                  <>
+                    <div class="dnet-tree-cmp-link-indicator"></div>
+                    <span class="dnet-menu-text">{props.menu.MinifiedText}</span>
+                  </>
+                )
             )}
 
             <b class="collapse-sign">
@@ -63,14 +72,20 @@ export const MenuTreeLink = component$((props: { menu: INavigationMenu }) => {
                 <span class={props.menu.IconClass} />
               </div>
             ) : null}
-            {(!themeConfigData.isMinified || (themeConfigData.isMinified && !props.menu.IsNode)) ? (
-              <span class="dnet-menu-text">{props.menu.Text}</span>
-            ) : (
-              <span class="dnet-menu-text">{props.menu.MinifiedText}</span>
-            )}
+            {(!themeConfigData.isMinified || (themeConfigData.isMinified && !props.menu.IsNode)) ?
+              (
+                <>
+                  <div class="dnet-tree-cmp-link-indicator"></div>
+                  <span class="dnet-menu-text">{props.menu.Text}</span>
+                </>
+              ) : (
+                <>
+                  <div class="dnet-tree-cmp-link-indicator"></div>
+                  <span class="dnet-menu-text">{props.menu.MinifiedText}</span>
+                </>
+              )}
           </a>
           : null}
-
       </div>
     </>
   );
