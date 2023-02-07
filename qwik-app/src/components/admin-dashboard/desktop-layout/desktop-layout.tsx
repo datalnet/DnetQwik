@@ -1,4 +1,4 @@
-import { component$, useStyles$, Slot, createContext, useContextProvider, useTask$, useClientEffect$ } from '@builder.io/qwik';
+import { component$, useStyles$, Slot, createContext, useContextProvider, useClientEffect$ } from '@builder.io/qwik';
 import styles from './desktop-layout.css?inline';
 import type { IThemeConfigData } from '../theme-config-data';
 
