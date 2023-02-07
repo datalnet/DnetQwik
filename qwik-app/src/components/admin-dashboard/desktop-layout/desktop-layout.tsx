@@ -14,7 +14,9 @@ export const DesktopLayout = component$(((props: { themeConfig: IThemeConfigData
   // });
 
   useClientEffect$(() => {
-    props.themeConfig.isMinified = Boolean(localStorage.getItem('dnetQwikDashMinified'))
+    const item = localStorage.getItem('dnetQwikDashMinified');
+    const booleanValue = item === 'true';
+    props.themeConfig.isMinified = booleanValue;
   });
 
   useContextProvider(ThemeConfigContext, props.themeConfig);
